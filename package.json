@@ -1,0 +1,35 @@
+{
+  "name": "moonbit-expo-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:mbt": "moon build --target js && cp target/js/release/build/moonbit_expo_app.js App.generated.js",
+    "build:mbt:min": "npm run build:mbt && terser App.generated.js -c -m -o App.generated.js",
+    "start": "npm run build:mbt && expo start",
+    "start:min": "npm run build:mbt:min && expo start",
+    "android": "npm run build:mbt && expo run:android",
+    "ios": "npm run build:mbt && expo run:ios",
+    "web": "npm run build:mbt && expo start --web"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^7.1.28",
+    "@react-navigation/native-stack": "^7.10.1",
+    "expo": "~54.0.31",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "^2.30.0",
+    "react-native-reanimated": "^4.2.1",
+    "react-native-safe-area-context": "^5.6.2",
+    "react-native-screens": "^4.20.0",
+    "react-native-web": "^0.21.0"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.10",
+    "babel-preset-expo": "^54.0.10",
+    "terser": "^5.37.0",
+    "typescript": "~5.9.2"
+  },
+  "private": true
+}

@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "name": "moonbit-expo-app",
+    "slug": "moonbit-expo-app",
+    "version": "1.0.0",
+    "platforms": ["ios", "android", "web"]
+  }
+}

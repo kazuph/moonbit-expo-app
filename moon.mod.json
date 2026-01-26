@@ -1,0 +1,13 @@
+{
+  "name": "kazuph/moonbit_expo_app",
+  "version": "0.1.0",
+  "deps": {
+    "mizchi/js": { "path": "/tmp/js.mbt" },
+    "mizchi/npm_typed": { "path": "/tmp/npm_typed.mbt" }
+  },
+  "readme": "README.mbt.md",
+  "repository": "",
+  "license": "Apache-2.0",
+  "keywords": [],
+  "description": ""
+}
