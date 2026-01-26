@@ -1,0 +1,30 @@
+appId: host.exp.Exponent
+---
+# Test swipe to delete functionality
+# Assumes Bulbasaur is already favorited
+
+# 1. Verify we're on list screen
+- assertVisible: "MoonBit Pokedex"
+- assertVisible: "151 Pokemon | 1 Favorites"
+
+# 2. Swipe left on Bulbasaur (first item, around 25% from top)
+- swipe:
+    start: "90%, 22%"
+    end: "10%, 22%"
+    duration: 400
+
+# 3. Tap delete button
+- tapOn: "Delete"
+
+# 4. Confirm delete
+- tapOn:
+    text: "Delete"
+    index: 1
+- waitForAnimationToEnd
+
+# 5. Verify favorites count changed back to 0
+- assertVisible: "151 Pokemon | 0 Favorites"
+
+# 6. Verify Ivysaur is now first (since Bulbasaur was deleted)
+- tapOn: "#2, Ivysaur.*"
+- assertVisible: "#002"

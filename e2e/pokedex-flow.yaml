@@ -1,0 +1,51 @@
+appId: host.exp.Exponent
+---
+# MoonBit Pokedex E2E Test
+# Assumes app is already loaded on list screen
+
+# 1. Verify list screen loaded
+- assertVisible: "MoonBit Pokedex"
+- assertVisible: "151 Pokemon | 0 Favorites"
+
+# 2. Tap on Bulbasaur to see details
+- tapOn: "#1, Bulbasaur.*"
+- waitForAnimationToEnd
+
+# 3. Verify detail screen
+- assertVisible: "#001"
+- assertVisible: "Grass"
+- assertVisible: "Poison"
+- assertVisible: "Base Stats"
+
+# 4. Add to favorites (tap heart icon)
+- tapOn: "🤍"
+- waitForAnimationToEnd
+
+# 5. Verify heart changed to filled
+- assertVisible: "❤️"
+
+# 6. Go back to list
+- tapOn: "← Back"
+- waitForAnimationToEnd
+
+# 7. Verify favorites count updated
+- assertVisible: "151 Pokemon | 1 Favorites"
+
+# 8. Swipe left on Bulbasaur item to reveal delete
+- swipe:
+    start: "90%, 25%"
+    end: "10%, 25%"
+    duration: 400
+
+# 9. Tap delete button
+- tapOn: "Delete"
+
+# 10. Confirm delete in alert
+- tapOn:
+    text: "Delete"
+    index: 1
+- waitForAnimationToEnd
+
+# 11. Verify list still works - tap on Ivysaur
+- tapOn: "#2, Ivysaur.*"
+- assertVisible: "#002"
