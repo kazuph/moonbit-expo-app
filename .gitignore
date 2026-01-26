@@ -4,4 +4,4 @@ target/
 .moonagent/
 node_modules/
 .expo/
-*.log
+*.logApp.generated.js
