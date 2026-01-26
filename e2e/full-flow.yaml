@@ -1,0 +1,59 @@
+appId: host.exp.Exponent
+---
+# MoonBit Pokedex Full E2E Test
+# Starts from Expo Go home screen
+
+# 1. Open the app from Expo Go
+- tapOn: "moonbit-expo-app"
+- extendedWaitUntil:
+    visible: "MoonBit Pokedex"
+    timeout: 30000
+
+# 2. Verify list screen loaded
+- assertVisible: "MoonBit Pokedex"
+- assertVisible: "151 Pokemon | 0 Favorites"
+
+# 3. Tap on Bulbasaur to see details
+- tapOn: "#1, Bulbasaur.*"
+- waitForAnimationToEnd
+
+# 4. Verify detail screen
+- assertVisible: "#001"
+- assertVisible: "Grass"
+- assertVisible: "Poison"
+
+# 5. Add to favorites (tap heart icon)
+- tapOn: "🤍"
+- waitForAnimationToEnd
+
+# 6. Verify heart changed to filled
+- assertVisible: "❤️"
+
+# 7. Go back to list
+- tapOn: "← Back"
+- waitForAnimationToEnd
+
+# 8. Verify favorites count updated
+- assertVisible: "151 Pokemon | 1 Favorites"
+
+# 9. Swipe left on Bulbasaur to reveal delete
+- swipe:
+    start: "90%, 22%"
+    end: "10%, 22%"
+    duration: 400
+
+# 10. Tap delete button
+- tapOn: "Delete"
+
+# 11. Confirm delete in alert
+- tapOn:
+    text: "Delete"
+    index: 1
+- waitForAnimationToEnd
+
+# 12. Verify Pokemon count decreased (Bulbasaur deleted)
+- assertVisible: "150 Pokemon"
+
+# 13. Verify Ivysaur is now at top and tappable
+- tapOn: "#2, Ivysaur.*"
+- assertVisible: "#002"
