@@ -40,8 +40,8 @@ using @react {
 // ============================================================================
 
 ///|
-extern "js" fn ffi_fetch_pokemon_list(
-  callback : (Array[@core.Any]) -> Unit,
+extern "js" fn ffi_fetch_pokemon_list_ffi(
+  callback : (FixedArray[@core.Any]) -> Unit,
 ) -> Unit =
   #| (callback) => {
   #|   fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
@@ -49,6 +49,12 @@ extern "js" fn ffi_fetch_pokemon_list(
   #|     .then(data => callback(data.results))
   #|     .catch(err => { console.error(err); callback([]); });
   #| }
+
+fn ffi_fetch_pokemon_list(
+  callback : (Array[@core.Any]) -> Unit,
+) -> Unit {
+  ffi_fetch_pokemon_list_ffi(fn(__a1) { callback(Array::from_fixed_array(__a1)) })
+}
 
 ///|
 extern "js" fn ffi_fetch_pokemon_detail(
